@@ -1,0 +1,168 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode, CODE, READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 480A            LDR              R0, =VAL1
+   12 00000002 6801            LDR              R1, [R0]
+   13 00000004 480A            LDR              R0, =VAL2
+   14 00000006 6802            LDR              R2, [R0]
+   15 00000008 4B0A            LDR              R3, =GCD
+   16 0000000A 4C0B            LDR              R4, =LCM
+   17 0000000C 428A    GCDF    CMP              R2,R1
+   18 0000000E D304            BCC              SWAP
+   19 00000010 1A89            SUBS             R1,R1,R2
+   20 00000012 D1FB            BNE              GCDF
+   21 00000014 4611            MOV              R1,R2
+   22 00000016 6019            STR              R1,[R3]
+   23 00000018 E7FE    STOP    B                STOP
+   24 0000001A 460D    SWAP    MOV              R5,R1       ;SWAP
+   25 0000001C 4611            MOV              R1,R2
+   26 0000001E 462A            MOV              R2,R5
+   27 00000020 4770            BX               LR
+   28 00000022 00 00 0000000A 
+                       VAL1    DCD              0XA
+   29 00000028 00000006 
+                       VAL2    DCD              0X6
+   30 0000002C 00000000 
+              00000000 
+              00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+   31 00000000 00000000 
+                       GCD     DCD              0
+   32 00000004 00000000 
+                       LCM     DCD              0
+   33 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\gcd_lc
+m.d -o.\gcd_lcm.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\
+ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\gcd_lcm.lst gcd_lcm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file gcd_lcm.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file gcd_lcm.s
+   Uses
+      At line 2 in file gcd_lcm.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+GCDF 0000000C
+
+Symbol: GCDF
+   Definitions
+      At line 17 in file gcd_lcm.s
+   Uses
+      At line 20 in file gcd_lcm.s
+Comment: GCDF used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file gcd_lcm.s
+   Uses
+      At line 5 in file gcd_lcm.s
+      At line 9 in file gcd_lcm.s
+
+STOP 00000018
+
+Symbol: STOP
+   Definitions
+      At line 23 in file gcd_lcm.s
+   Uses
+      At line 23 in file gcd_lcm.s
+Comment: STOP used once
+SWAP 0000001A
+
+Symbol: SWAP
+   Definitions
+      At line 24 in file gcd_lcm.s
+   Uses
+      At line 18 in file gcd_lcm.s
+Comment: SWAP used once
+VAL1 00000024
+
+Symbol: VAL1
+   Definitions
+      At line 28 in file gcd_lcm.s
+   Uses
+      At line 11 in file gcd_lcm.s
+Comment: VAL1 used once
+VAL2 00000028
+
+Symbol: VAL2
+   Definitions
+      At line 29 in file gcd_lcm.s
+   Uses
+      At line 13 in file gcd_lcm.s
+Comment: VAL2 used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file gcd_lcm.s
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+GCD 00000000
+
+Symbol: GCD
+   Definitions
+      At line 31 in file gcd_lcm.s
+   Uses
+      At line 15 in file gcd_lcm.s
+Comment: GCD used once
+LCM 00000004
+
+Symbol: LCM
+   Definitions
+      At line 32 in file gcd_lcm.s
+   Uses
+      At line 16 in file gcd_lcm.s
+Comment: LCM used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 30 in file gcd_lcm.s
+   Uses
+      None
+Comment: mydata unused
+3 symbols
+345 symbols in table

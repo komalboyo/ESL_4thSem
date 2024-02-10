@@ -1,0 +1,169 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode, CODE, READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 480A            LDR              R0, =DIVIDEND
+   12 00000002 6801            LDR              R1, [R0]
+   13 00000004 480A            LDR              R0, =DIVISOR
+   14 00000006 6802            LDR              R2, [R0]
+   15 00000008 4B0A            LDR              R3, =Q
+   16 0000000A 4C0B            LDR              R4, =R
+   17 0000000C F04F 0500       MOV              R5,#0
+   18 00000010 4291    L2      CMP              R1, R2
+   19 00000012 D303            BCC              L1          ;CARRY WHEN NO BORR
+                                                            OW ie WHEN R1>R2
+   20 00000014 1A89            SUBS             R1,R1,R2
+   21 00000016 F105 0501       ADD              R5, #1
+   22 0000001A E7F9            B                L2
+   23 0000001C 601D    L1      STR              R5, [R3]
+   24 0000001E 6021            STR              R1, [R4]
+   25 00000020 E7FE    STOP    B                STOP
+   26 00000022 00 00 00000011 
+                       DIVIDEND
+                               DCD              0X11
+   27 00000028 00000005 
+                       DIVISOR DCD              0X5
+   28 0000002C 00000000 
+              00000000 
+              00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+   29 00000000 00000000 
+                       Q       DCD              0
+   30 00000004 00000000 
+                       R       DCD              0
+   31 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\divisi
+on.d -o.\division.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Kei
+l\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\division.lst divisio
+n.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file division.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file division.s
+   Uses
+      At line 2 in file division.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DIVIDEND 00000024
+
+Symbol: DIVIDEND
+   Definitions
+      At line 26 in file division.s
+   Uses
+      At line 11 in file division.s
+Comment: DIVIDEND used once
+DIVISOR 00000028
+
+Symbol: DIVISOR
+   Definitions
+      At line 27 in file division.s
+   Uses
+      At line 13 in file division.s
+Comment: DIVISOR used once
+L1 0000001C
+
+Symbol: L1
+   Definitions
+      At line 23 in file division.s
+   Uses
+      At line 19 in file division.s
+Comment: L1 used once
+L2 00000010
+
+Symbol: L2
+   Definitions
+      At line 18 in file division.s
+   Uses
+      At line 22 in file division.s
+Comment: L2 used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file division.s
+   Uses
+      At line 5 in file division.s
+      At line 9 in file division.s
+
+STOP 00000020
+
+Symbol: STOP
+   Definitions
+      At line 25 in file division.s
+   Uses
+      At line 25 in file division.s
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file division.s
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Q 00000000
+
+Symbol: Q
+   Definitions
+      At line 29 in file division.s
+   Uses
+      At line 15 in file division.s
+Comment: Q used once
+R 00000004
+
+Symbol: R
+   Definitions
+      At line 30 in file division.s
+   Uses
+      At line 16 in file division.s
+Comment: R used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 28 in file division.s
+   Uses
+      None
+Comment: mydata unused
+3 symbols
+345 symbols in table
