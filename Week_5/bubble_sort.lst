@@ -1,0 +1,175 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode, CODE, READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 F04F 0400       MOV              R4, #0
+   12 00000004 F04F 010A       MOV              R1, #10
+   13 00000008 4814            LDR              R0, =LIST
+   14 0000000A 4A15            LDR              R2, =DST
+   15 0000000C 5903    UP      LDR              R3, [R0,R4]
+   16 0000000E 5113            STR              R3, [R2,R4]
+   17 00000010 F104 0404       ADD              R4, #4
+   18 00000014 F1A1 0101       SUB              R1, #1
+   19 00000018 2900            CMP              R1, #0
+   20 0000001A D8F7            BHI              UP
+   21 0000001C 4810            LDR              R0, =DST
+   22 0000001E F04F 030A       MOV              R3, #10     ;INNER LOOP COUNTER
+                                                            
+   23 00000022 F1A3 0301       SUB              R3,R3,#1
+   24 00000026 4699            MOV              R9, R3
+   25 00000028 F1A3 0301       SUB              R3,R3,#1
+   26 0000002C 4699            MOV              R9, R3      ;OUTER LOOP COUNTER
+                                                            
+   27 0000002E         OUTER_LOOP
+   28 0000002E 4605            MOV              R5,R0
+   29 00000030 461C            MOV              R4,R3
+   30 00000032         INNER_LOOP
+   31 00000032 F855 6B04       LDR              R6,[R5],#4
+   32 00000036 682F            LDR              R7,[R5]
+   33 00000038 42B7            CMP              R7,R6
+   34 0000003A BF9C 602E       STRLS            R6,[R5]
+   35 0000003E F845 7C04       STRLS            R7,[R5,#-4]
+   36 00000042 1E64            SUBS             R4,R4,#1
+   37 00000044 D1F5            BNE              INNER_LOOP
+   38 00000046 F1A3 0301       SUB              R3,#1
+   39 0000004A F1B9 0901       SUBS             R9,R9,#1
+   40 0000004E D1EE            BNE              OUTER_LOOP
+   41 00000050 E7FE    STOP    B                STOP
+   42 00000052 01 05 02 
+              08 03 06 
+              04 09 0A 
+              07       LIST    DCB              1,5,2,8,3,6,4,9,10,7
+   43 0000005C 00000000 
+              00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+   44 00000000 00 00 00 
+              00 00    DST     DCB              0,0,0,0,0
+   45 00000005                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\bubble
+_sort.d -o.\bubble_sort.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -I
+C:\Keil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\bubble_sort.ls
+t bubble_sort.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file bubble_sort.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file bubble_sort.s
+   Uses
+      At line 2 in file bubble_sort.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+INNER_LOOP 00000032
+
+Symbol: INNER_LOOP
+   Definitions
+      At line 30 in file bubble_sort.s
+   Uses
+      At line 37 in file bubble_sort.s
+Comment: INNER_LOOP used once
+LIST 00000052
+
+Symbol: LIST
+   Definitions
+      At line 42 in file bubble_sort.s
+   Uses
+      At line 13 in file bubble_sort.s
+Comment: LIST used once
+OUTER_LOOP 0000002E
+
+Symbol: OUTER_LOOP
+   Definitions
+      At line 27 in file bubble_sort.s
+   Uses
+      At line 40 in file bubble_sort.s
+Comment: OUTER_LOOP used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file bubble_sort.s
+   Uses
+      At line 5 in file bubble_sort.s
+      At line 9 in file bubble_sort.s
+
+STOP 00000050
+
+Symbol: STOP
+   Definitions
+      At line 41 in file bubble_sort.s
+   Uses
+      At line 41 in file bubble_sort.s
+Comment: STOP used once
+UP 0000000C
+
+Symbol: UP
+   Definitions
+      At line 15 in file bubble_sort.s
+   Uses
+      At line 20 in file bubble_sort.s
+Comment: UP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file bubble_sort.s
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 44 in file bubble_sort.s
+   Uses
+      At line 14 in file bubble_sort.s
+      At line 21 in file bubble_sort.s
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 43 in file bubble_sort.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+344 symbols in table
