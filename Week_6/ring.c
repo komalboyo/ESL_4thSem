@@ -12,7 +12,7 @@ int main()
   LPC_PINCON->PINSEL0 &= 0X0;
   LPC_PINCON->PINSEL1 &= 0X0;
   
-  LPC_GPIO0->FIODIR =0xFF<<15 | 0xFF<<15;
+  LPC_GPIO0->FIODIR =0xFF<<15 | 0<<10;
   
   while(1)
   {
