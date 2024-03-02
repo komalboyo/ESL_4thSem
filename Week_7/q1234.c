@@ -11,7 +11,7 @@ int main(){
 	LPC_GPIO1->FIODIR=0Xf<<23;
 	
 	while(1){
-		LPC_GPIO0->FIOCLR=0Xffffffff;
+		//LPC_GPIO0->FIOCLR=0Xffffffff;
 		for (i=1;i<=4;i++){
 			LPC_GPIO1->FIOPIN= (4-i)<<23;
 			LPC_GPIO0->FIOPIN= tohex[i]<<15;
