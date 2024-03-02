@@ -35,5 +35,5 @@ int main()
 		}
   }
 }
-//keep switch pressed its like a doorbell, top make switch 1 you have to keep it pressed
+//keep switch pressed its like a doorbell, to make switch 0 you have to keep it pressed
 //this code will complete 256 numbers up/down at one stretch only then you can change
